@@ -10,14 +10,52 @@ using System.Windows.Forms;
 
 namespace ConsoleSystemTray {
   class Program {
-    static void Main(string[] args) {
-      var cmds = Utils.GetCommondLines(args);
-      string path = cmds.GetArgument("-p");
-      string arguments = cmds.GetArgument("-a", true);
-      string icon = cmds.GetArgument("-i", true);
-      string baseDirectory = cmds.GetArgument("-d", true);
-      string tip = cmds.GetArgument("-t", true);
+    private const string kHelpCmdString = @"Usage: ConsoleSystemTray.exe [-p filePath]
+Arguments 
+-p              : the application or document to start
 
+Options
+-a              : sets the set of command-line arguments to use when starting the application 
+-d              : sets the working directory for the process to be started
+-i              : sets the current icon of tray
+-t              : sets the ToolTip text of tray
+-h              : show the help message and exit   
+";
+
+    static void Main(string[] args) {
+      if (args.Length > 0) {
+        try {
+          var cmds = Utils.GetCommondLines(args);
+          if (cmds.ContainsKey("-h")) {
+            ShowHelpInfo();
+            return;
+          }
+
+          string path = cmds.GetArgument("-p");
+          string arguments = cmds.GetArgument("-a", true);
+          string baseDirectory = cmds.GetArgument("-d", true);
+          string icon = cmds.GetArgument("-i", true);
+          string tip = cmds.GetArgument("-t", true);
+          Run(path, arguments, icon, baseDirectory, tip);
+        } catch (CmdArgumentException e) {
+          Console.Error.WriteLine(e.Message);
+          ShowHelpInfo();
+          Environment.ExitCode = -1;
+        } catch (Exception e) {
+          Console.Error.WriteLine(e.ToString());
+          Environment.ExitCode = -1;
+        }
+      } else {
+        ShowHelpInfo();
+        Environment.ExitCode = -1;
+      }
+    }
+
+    private static void ShowHelpInfo() {
+      Console.Error.WriteLine(kHelpCmdString);
+    }
+
+    private static void Run(string path, string arguments, string icon, string baseDirectory, string tip) {
       Icon trayIcon;
       if (!string.IsNullOrWhiteSpace(icon)) {
         trayIcon = new Icon(icon);

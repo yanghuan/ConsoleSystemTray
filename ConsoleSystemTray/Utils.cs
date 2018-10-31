@@ -5,6 +5,11 @@ using System.Text;
 using System.IO;
 
 namespace ConsoleSystemTray {
+  sealed class CmdArgumentException : Exception {
+    public CmdArgumentException(string message) : base(message) {
+    }
+  }
+
   static class Utils {
     public static T GetOrDefault<K, T>(this IDictionary<K, T> dict, K key, T t = default(T)) {
       if (dict.TryGetValue(key, out T v)) {
@@ -44,7 +49,7 @@ namespace ConsoleSystemTray {
         if (isOption) {
           return null;
         }
-        throw new InvalidOperationException(name + " is not found");
+        throw new CmdArgumentException(name + " is not found");
       }
       return values[0];
     }

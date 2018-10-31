@@ -6,13 +6,10 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("ConsoleSystemTray")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("Run Console Application To Windows System Tray")]
+[assembly: AssemblyCompany("YANG Huan")]
 [assembly: AssemblyProduct("ConsoleSystemTray")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCopyright("Copyright ©  YANG Huan 2017")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型
 //对 COM 组件不可见。如果需要从 COM 访问此程序集中的类型
