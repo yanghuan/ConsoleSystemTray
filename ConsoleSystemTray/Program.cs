@@ -81,7 +81,7 @@ Options
       SwitchWindow(GetConsoleWindow());
 
       if (isPreventSleep) {
-        SetThreadExecutionState(EXECUTION_STATE.ES_DISPLAY_REQUIRED | EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
+        SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
       }
 
       string trapText = !string.IsNullOrEmpty(tip) ? tip : GetTrayText(p);
