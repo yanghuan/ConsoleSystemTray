@@ -14,6 +14,7 @@ Options
 -d              : sets the working directory for the process to be started
 -i              : sets the current icon of tray
 -t              : sets the ToolTip text of tray
+-s				: prevent Windows OS from entering Sleep mode	
 -h              : show the help message and exit   
 ```
 
